@@ -3,4 +3,4 @@ project(mm_vector_class)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(mm_vector_class main.cpp XYVector.h XYVector.cpp)
+add_executable(mm_vector_class main.cpp mmVector.h mmVector.cpp)

@@ -2,7 +2,7 @@
 using namespace std;
 template<typename object>
 
-class XYVector {
+class mmVector {
     typedef object* iterator;
 private:
     object* ptr;
@@ -10,12 +10,12 @@ private:
     int itsCapacity;
 public:
 
-    XYVector (int); // Initialize by specific capacity
-    XYVector (object*, int n ); // Initialize by n items from array
-    XYVector (const XYVector&); // Initialize with a copy
-    ~XYVector();
-    XYVector &operator=(const XYVector&); // Copy assignment
-    XYVector &operator=(const XYVector&&); // Move assignment
+    mmVector (int); // Initialize by specific capacity
+    mmVector (object*, int n ); // Initialize by n items from array
+    mmVector (const mmVector&); // Initialize with a copy
+    ~mmVector();
+    mmVector &operator=(const mmVector&); // Copy assignment
+    mmVector &operator=(const mmVector&&); // Move assignment
 
     // Modifying operations
     object& operator[](int); // Access item by reference
@@ -30,8 +30,8 @@ public:
     iterator end(); // Return an iterator (T*)
 
     // Comparison operations
-    bool operator==(const XYVector<object>&) ;// Return true if ==
-    bool operator< (const XYVector<object>&); // Compares item by item
+    bool operator==(const mmVector<object>&) ;// Return true if ==
+    bool operator< (const mmVector<object>&); // Compares item by item
 
     // Capacity operations
     int size() const ;  // Return current size of vec
@@ -40,5 +40,5 @@ public:
     bool empty() ; // Return true if size is 0
 
     // Friends
-    friend ostream& operator << (ostream& out, XYVector<object>);
+    friend ostream& operator << (ostream& out, mmVector<object>);
 };
