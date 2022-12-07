@@ -49,7 +49,7 @@ public:
     friend ostream& operator << (ostream& out,const  mmVector<object>&rhs){
         out <<"[";
         for(int i = 0; i < rhs.itsSize; i++){
-            out << i;
+            out << rhs.ptr[i] << " ";
             if(i != rhs.itsSize - 1) out << ", ";
         }
         out << "]\n";

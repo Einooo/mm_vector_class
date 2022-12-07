@@ -8,7 +8,7 @@ int main() {
     int a2[5] = {1,5,5,5,4};
     mmVector<int> a(a1,5);
     mmVector<int> b(a2,5);
-    cout << b << endl;
+    cout << a << endl;
 }
 
 // 1 1 0 siz = 3
