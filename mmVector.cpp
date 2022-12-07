@@ -11,9 +11,10 @@ mmVector<object>::mmVector(object* arr, int n):itsSize(n), itsCapacity(n), ptr(n
 
 }
 
-template<typename object>
-void mmVector<object>::print() const {
-    for(int i = 0; i < 5; i++){
-        cout << ptr[i] << ' ';
-    }
-}
+//template<typename object>
+//void mmVector<object>::print() const {
+//    for(int i = 0; i < 5; i++){
+//        cout << ptr[i] << ' ';
+//    }
+//}
+

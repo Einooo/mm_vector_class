@@ -1,6 +1,10 @@
+#ifndef lol
+#define lol
+
+
 #include<iostream>
 using namespace std;
-template<typename object>
+template<class object>
 class mmVector {
     typedef object* iterator;
 private:
@@ -10,9 +14,9 @@ private:
 public:
 
     mmVector (int); // Initialize by specific capacity
-    mmVector (object*, int n ); // Initialize by n items from array
+    mmVector (object*, int ); // Initialize by n items from array
 //    mmVector (const mmVector&); // Initialize with a copy
-//    ~mmVector();
+    ~mmVector();
 //    mmVector &operator=(const mmVector&); // Copy assignment
 //    mmVector &operator=(const mmVector&&); // Move assignment
 //
@@ -37,7 +41,9 @@ public:
 //    int capacity() const; // Return size of current allocated array
 //    int resize() ; // Relocate to bigger space
 //    bool empty() ; // Return true if size is 0
-    void print() const;
+//    void print() const;
 //    // Friends
 //    friend ostream& operator << (ostream& out, mmVector<object>);
 };
+
+#endif
