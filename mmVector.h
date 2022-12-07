@@ -9,6 +9,7 @@ template<class object>
 class mmVector {
     typedef object* iterator;
 private:
+//    class iterator;
     object* ptr;
     int itsSize;
     int itsCapacity;
@@ -49,4 +50,7 @@ public:
 //    friend ostream& operator << (ostream& out, mmVector<object>);
 };
 
+//template<typename object>class mmVector<object>::iterator{
+//
+//};
 #endif
