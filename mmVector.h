@@ -9,7 +9,6 @@ template<class object>
 class mmVector {
 
 private:
-//    class iterator;
     object* ptr;
     int itsSize;
     int itsCapacity;
@@ -21,7 +20,7 @@ public:
     mmVector (const mmVector&); // Initialize with a copy
     ~mmVector();
     mmVector &operator=(const mmVector&); // Copy assignment
-//    mmVector &operator=(const mmVector&&); // Move assignment
+    mmVector &operator=(const mmVector&&); // Move assignment
 //
 //    // Modifying operations
     object& operator[](int); // Access item by reference
@@ -31,14 +30,14 @@ public:
     void erase(iterator); // Remove item at iterator
     iterator begin() ;// Return an iterator (T*)
     iterator end(); // Return an iterator (T*)
-//    void erase(iterator, iterator);// Remove items between
-//    void clear(); // Delete all vector content
+    void erase(iterator, iterator);// Remove items between
+    void clear(); // Delete all vector content
 //    void insert(iterator, object); // Insert item at iterator
 
 //
 //    // Comparison operations
-//    bool operator==(const mmVector<object>&) ;// Return true if ==
-//    bool operator< (const mmVector<object>&); // Compares item by item
+    bool operator==(const mmVector<object>&);// Return true if ==
+    bool operator< (const mmVector<object>&);// Compares item by item
 //
 //    // Capacity operations
     int size() const ;  // Return current size of vec
@@ -47,10 +46,15 @@ public:
 //    bool empty() ; // Return true if size is 0
     void print() const;
 //    // Friends
-//    friend ostream& operator << (ostream& out, mmVector<object>);
+    friend ostream& operator << (ostream& out,const  mmVector<object>&rhs){
+        out <<"[";
+        for(int i = 0; i < rhs.itsSize; i++){
+            out << i;
+            if(i != rhs.itsSize - 1) out << ", ";
+        }
+        out << "]\n";
+        return out;
+    }
 };
 
-//template<typename object>class mmVector<object>::iterator{
-//
-//};
 #endif
