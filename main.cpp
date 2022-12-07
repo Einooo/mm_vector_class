@@ -1,7 +1,8 @@
-#include <iostream>
+#include <bits/stdc++.h>
 #include "mmVector.h"
-
+using  namespace  std;
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
+    int a1[5] = {0};
+    mmVector<int> a(a1, 5);
+    a.print();
 }
