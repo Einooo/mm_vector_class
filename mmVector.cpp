@@ -67,10 +67,10 @@ object mmVector<object>::pop_back(){
     return temp;
 }
 
-//template<typename object>
-//iterator mmVector<object>::begin(){
-//    return
-//}
+template<typename object>
+typename mmVector<object>::iterator mmVector<object>::begin(){
+    return ptr;
+}
 
 template<typename object>
 void mmVector<object>::erase(iterator){

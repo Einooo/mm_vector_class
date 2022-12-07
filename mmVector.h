@@ -7,7 +7,7 @@ using namespace std;
 template<class object>
 
 class mmVector {
-    typedef object* iterator;
+
 private:
 //    class iterator;
     object* ptr;
@@ -15,7 +15,7 @@ private:
     int itsCapacity;
     void increaseCapacity(int n);
 public:
-
+    typedef object* iterator;
     mmVector (int); // Initialize by specific capacity
     mmVector (object*, int ); // Initialize by n items from array
     mmVector (const mmVector&); // Initialize with a copy
