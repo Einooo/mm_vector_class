@@ -19,6 +19,7 @@ public:
 
     // Modifying operations
     object& operator[](int); // Access item by reference
+    object operator[](int) const; // For const objects
     int push_back(object); // Add item to end of vec & return # of items
     object pop_back(); // Remove and return last element in vec
     void erase(iterator); // Remove item at iterator
