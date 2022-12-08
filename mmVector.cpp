@@ -6,11 +6,10 @@ mmVector<object>::mmVector(int n)
 {}
 
 template<typename object>
-mmVector<object>::mmVector(object* arr, int n):itsSize(n), itsCapacity(n), ptr(new object[n]){
+mmVector<object>::mmVector(object* arr, int n):mmVector(n){
     for(int i = 0; i < itsSize; i++){
         ptr[i] = arr[i];
     }
-
 }
 
 template<typename object>
@@ -38,11 +37,12 @@ mmVector<object>::mmVector(const mmVector& temp){
     }
 }
 
-
 template<typename object>
 void mmVector<object>::push_back(object temp){
+    // if there is space to add the object at the end of our vector
     if(itsCapacity > itsSize) ptr[itsSize - 1] = temp;
     else{
+        // if not, allocate more memory and add the object at the end
         increaseCapacity(2 * itsSize);
         ptr[itsSize] = temp;
         itsSize++;
@@ -74,19 +74,17 @@ typename mmVector<object>::iterator mmVector<object>::begin(){
 
 template<typename object>
 typename mmVector<object>::iterator mmVector<object>::end(){
-    return ptr + itsSize;
+    return (ptr + itsSize - 1);
 }
 
-template<typename object>
-void mmVector<object>::erase(iterator){
-
-}
-
-// 1 2 3 5
-// 1 2 5
+//template<typename object>
+//void mmVector<object>::erase(iterator){
+//
+//}
 
 template<typename object>
 void mmVector<object>::increaseCapacity(int n){
+    // if n is smaller, nothing happened
     if(n <= itsCapacity) return;
 
     itsCapacity = n;
@@ -114,7 +112,6 @@ int mmVector<object>::capacity() const {
     return itsCapacity;
 }
 
-
 template<typename object>
 void mmVector<object>::print() const {
     for(int i = 0; i < itsSize; i++){
@@ -123,27 +120,24 @@ void mmVector<object>::print() const {
 }
 
 template<class object>
-mmVector<object> &mmVector<object>::operator=(const mmVector &&rhs) {
+mmVector<object> &mmVector<object>::operator=( mmVector &&rhs) {
     if(this != &rhs){
         delete[] ptr;
         itsSize = rhs.itsSize;
         itsCapacity = rhs.itsCapacity;
-        ptr = new object[rhs.itsCapacity];
-        for(int i = 0; i < itsSize; i++){
-            ptr[i] = rhs.ptr[i];
-        }
+        ptr = rhs.ptr;
+        rhs.ptr = nullptr;
     }
-    rhs.ptr = nullptr;
     return *this;
 }
 
-template<class object>
-void mmVector<object>::erase(mmVector::iterator, mmVector::iterator) {
-}
+//template<class object>
+//void mmVector<object>::erase(mmVector::iterator, mmVector::iterator) {
+//}
 
 template<class object>
 void mmVector<object>::clear() {
-    for(auto &i : *this){
+    for(auto &i: *this){
         i = object();
     }
     itsSize = 0;
@@ -169,15 +163,18 @@ bool mmVector<object>::operator<(const mmVector<object> &rhs) {
     return false;
 }
 
-//template<class object>
-//ostream &operator<<(ostream &out, const mmVector<object>& rhs) {
-//    out <<"[";
-//    for(int i = 0; i < rhs.itsSize; i++){
-//        out << i;
-//        if(i != rhs.itsSize - 1) out << ", ";
-//    }
-//    out << "]\n";
-//    return out;
-//}
+template<class object>
+ostream & operator<<(ostream &out, const mmVector<object>& rhs) {
+    out <<"[";
+    for(int i = 0; i < rhs.itsSize; i++){
+        out << rhs.ptr[i];
+        if(i != rhs.itsSize - 1) out << ", ";
+    }
+    out << "]\n";
+    return out;
+}
 
-
+template<class object>
+bool mmVector<object>::empty() {
+    return(itsSize == 0);
+}
