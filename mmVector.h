@@ -1,6 +1,7 @@
 #ifndef lol
 #define lol
 #include<iostream>
+#include <stdexcept>
 using namespace std;
 
 template<class object>
@@ -11,6 +12,7 @@ private:
     int itsSize;
     int itsCapacity;
     void increaseCapacity(int n);
+    bool isValidIterator(iterator);         // return true if iterator is in out boundries
 
 public:
 
@@ -26,12 +28,12 @@ public:
     const object& operator[](int) const;    // For const objects
     void push_back(object);                 // Add item to end of vec & return # of items
     object pop_back();                      // Remove and return last element in vec
-//    void erase(iterator);                   // Remove item at iterator
+    void erase(iterator);                   // Remove item at iterator
     iterator begin() ;                      // Return an iterator (T*)
     iterator end();                         // Return an iterator (T*)
-//    void erase(iterator, iterator);       // Remove items between
+    void erase(iterator, iterator);       // Remove items between
     void clear();                           // Delete all vector content
-//    void insert(iterator, object);        // Insert item at iterator
+    void insert(iterator,  const object&);        // Insert item at iterator
 
 
     bool operator==(const mmVector<object>&);   // Return true if ==

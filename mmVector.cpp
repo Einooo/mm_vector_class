@@ -40,13 +40,13 @@ mmVector<object>::mmVector(const mmVector& temp){
 template<typename object>
 void mmVector<object>::push_back(object temp){
     // if there is space to add the object at the end of our vector
-    if(itsCapacity > itsSize) ptr[itsSize - 1] = temp;
+    if(itsCapacity > itsSize) ptr[itsSize] = temp;
     else{
         // if not, allocate more memory and add the object at the end
         increaseCapacity(2 * itsSize);
         ptr[itsSize] = temp;
-        itsSize++;
     }
+    itsSize++;
 }
 
 template<typename object>
@@ -76,11 +76,6 @@ template<typename object>
 typename mmVector<object>::iterator mmVector<object>::end(){
     return (ptr + itsSize - 1);
 }
-
-//template<typename object>
-//void mmVector<object>::erase(iterator){
-//
-//}
 
 template<typename object>
 void mmVector<object>::increaseCapacity(int n){
@@ -131,9 +126,53 @@ mmVector<object> &mmVector<object>::operator=( mmVector &&rhs) {
     return *this;
 }
 
-//template<class object>
-//void mmVector<object>::erase(mmVector::iterator, mmVector::iterator) {
-//}
+template<typename object>
+void mmVector<object>::erase(iterator it){
+    if(itsSize == 0) return;
+    // Checking Boundries
+    if(!isValidIterator(it)) throw out_of_range("");
+
+    iterator newVector = new object[itsCapacity];
+    int newVectorCounter = 0;
+    // Adding elements to the left of "it" to newVector
+    for(auto i = begin(); i < it; i++){
+        newVector[newVectorCounter] = *i;
+        newVectorCounter++;
+    }
+    // Adding elements to the right of "it" to newVector
+    for(auto i = it + 1; i <= end(); i++){
+        newVector[newVectorCounter] = *i;
+        newVectorCounter++;
+    }
+    delete[]ptr;
+    ptr = newVector;
+    itsSize--;
+}
+
+template<class object>
+void mmVector<object>::erase(iterator it1, iterator it2) {
+    if(it1 > it2) throw("start iterator is bigger than end iterator");
+
+    if(!isValidIterator(it1) || !isValidIterator(it2))
+        throw out_of_range("One iterator is out of range");
+
+    iterator newVector = new object[itsCapacity];
+    int newVectorCounter = 0;
+    // Adding elements to the left of "it1" to newVector
+    for(auto i = begin(); i < it1; i++){
+        newVector[newVectorCounter] = *i;
+        newVectorCounter++;
+    }
+    // Adding elements to the right of "it2" to newVector
+    for(auto i = it2 + 1; i <= end(); i++){
+        newVector[newVectorCounter] = *i;
+        newVectorCounter++;
+    }
+    delete[]ptr;
+    ptr = newVector;
+    itsSize -= (it2 - it1 + 1);
+
+}
 
 template<class object>
 void mmVector<object>::clear() {
@@ -177,4 +216,24 @@ ostream & operator<<(ostream &out, const mmVector<object>& rhs) {
 template<class object>
 bool mmVector<object>::empty() {
     return(itsSize == 0);
+}
+
+template<class object>
+bool mmVector<object>::isValidIterator(iterator it) {
+    if(it < begin() || it > end()) return false;
+
+    return true;
+}
+
+template<class object>
+void mmVector<object>::insert(iterator it, const object& obj) {
+    if(!isValidIterator(it)) throw out_of_range("");
+
+    push_back(object());
+
+    for(auto i = end(); i > it; i-- ) {
+        *i = *(i - 1);
+    }
+    *it = obj;
+
 }
