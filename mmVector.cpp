@@ -132,20 +132,11 @@ void mmVector<object>::erase(iterator it){
     // Checking Boundries
     if(!isValidIterator(it)) throw out_of_range("");
 
-    iterator newVector = new object[itsCapacity];
-    int newVectorCounter = 0;
-    // Adding elements to the left of "it" to newVector
-    for(auto i = begin(); i < it; i++){
-        newVector[newVectorCounter] = *i;
-        newVectorCounter++;
-    }
-    // Adding elements to the right of "it" to newVector
-    for(auto i = it + 1; i <= end(); i++){
-        newVector[newVectorCounter] = *i;
-        newVectorCounter++;
-    }
-    delete[]ptr;
-    ptr = newVector;
+    // shifiting elements after the "it" to left
+    for(auto i = it; i < end(); i++)
+        *(i) = *(i + 1);
+
+    ptr[itsSize - 1] = object();
     itsSize--;
 }
 
@@ -156,21 +147,17 @@ void mmVector<object>::erase(iterator it1, iterator it2) {
     if(!isValidIterator(it1) || !isValidIterator(it2))
         throw out_of_range("One iterator is out of range");
 
-    iterator newVector = new object[itsCapacity];
-    int newVectorCounter = 0;
-    // Adding elements to the left of "it1" to newVector
-    for(auto i = begin(); i < it1; i++){
-        newVector[newVectorCounter] = *i;
-        newVectorCounter++;
-    }
-    // Adding elements to the right of "it2" to newVector
-    for(auto i = it2 + 1; i <= end(); i++){
-        newVector[newVectorCounter] = *i;
-        newVectorCounter++;
-    }
-    delete[]ptr;
-    ptr = newVector;
+
+    // shifiting elements after the "it" to left
+    for(auto i = it1, j = it2 + 1; i < end(); i++, j++)
+        *(i) = *(j);
+
     itsSize -= (it2 - it1 + 1);
+
+    // Setting deleted elements to deafult value after moving them to the end of ou vector
+    for(int i = itsSize + 1; i < (it2 - it1 + 1); i++ ){
+        ptr[i] = object();
+    }
 
 }
 

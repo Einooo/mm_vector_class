@@ -15,17 +15,17 @@ int main() {
     cout << a.size() << ' ' << a.capacity();
     cout << endl;
 
-    a.erase(a.begin());
+    a.erase(a.begin(),a.end());
 
     a.print();
     cout << endl;
     cout << a.size() << ' ' << a.capacity();
     cout << endl;
-
-    a.insert(a.end() ,232 );
-    a.print();
-    cout << endl;
-    cout << a.size() << ' ' << a.capacity();
+//
+//    a.insert(a.end() ,232 );
+//    a.print();
+//    cout << endl;
+//    cout << a.size() << ' ' << a.capacity();
 }
 
 // 1 1 0 siz = 3
