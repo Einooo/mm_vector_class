@@ -18,6 +18,7 @@ public:
 
     mmVector (int);                         // Initialize by specific capacity
     mmVector (object*, int );               // Initialize by n items from array
+    mmVector(initializer_list<object>);
     mmVector (const mmVector&);             // Initialize with a copy
     ~mmVector();
     mmVector &operator=(const mmVector&);   // Copy assignment

@@ -224,3 +224,13 @@ void mmVector<object>::insert(iterator it, const object& obj) {
     *it = obj;
 
 }
+
+template<class object>
+mmVector<object>::mmVector(initializer_list<object> list) {
+    ptr = new object[list.size()];
+    itsSize = itsCapacity = list.size();
+    auto it = list.begin();
+    for(int i = 0; i < itsSize; i++, it++){
+        ptr[i] = *it;
+    }
+}
