@@ -43,7 +43,7 @@ public:
     // Capacity operations
     int size() const ;          // Return current size of vec
     int capacity() const;       // Return size of current allocated array
-//    int resize() ;            // Relocate to bigger space
+//    void resize() ;            // Relocate to bigger space
     bool empty() ;              // Return true if size is 0
     void print() const;
 

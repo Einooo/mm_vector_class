@@ -5,5 +5,6 @@ using  namespace  std;
 
 int main() {
     mmVector <int> a = {1,2,3};
+    a.print();
 }
 

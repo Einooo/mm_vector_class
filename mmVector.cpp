@@ -216,12 +216,13 @@ template<class object>
 void mmVector<object>::insert(iterator it, const object& obj) {
     if(!isValidIterator(it)) throw out_of_range("");
 
-    push_back(object());
+    int index = it - this->begin();
 
-    for(auto i = end(); i > it; i-- ) {
-        *i = *(i - 1);
+    push_back(object());
+    for(auto i = itsSize ; i > index; i-- ) {
+        ptr[i]= ptr[i - 1];
     }
-    *it = obj;
+    ptr[index] = obj;
 
 }
 
@@ -234,3 +235,11 @@ mmVector<object>::mmVector(initializer_list<object> list) {
         ptr[i] = *it;
     }
 }
+
+//template<class object>
+//void mmVector<object>::resize() {
+//    if(itsSize < itsCapacity)
+//        increaseCapacity(2 * itsSize);
+//
+//
+//}
