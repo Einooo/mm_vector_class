@@ -148,7 +148,7 @@ void mmVector<object>::erase(iterator it1, iterator it2) {
         throw out_of_range("One iterator is out of range");
 
 
-    // shifiting elements after the "it" to left
+    // shifiting elements after the "it2" to left
     for(auto i = it1, j = it2 + 1; i < end(); i++, j++)
         *(i) = *(j);
 
@@ -236,10 +236,17 @@ mmVector<object>::mmVector(initializer_list<object> list) {
     }
 }
 
-//template<class object>
-//void mmVector<object>::resize() {
-//    if(itsSize < itsCapacity)
-//        increaseCapacity(2 * itsSize);
-//
-//
-//}
+template<class object>
+void mmVector<object>::resize(int newSize) {
+    if(newSize < 0) throw "size can't be negative";
+
+    if(newSize > itsCapacity){
+        increaseCapacity(2 * itsSize);
+    }
+
+    itsSize = newSize;
+    for(int i = newSize; i < itsCapacity ; i++){
+        ptr[i] = object();
+    }
+
+}
