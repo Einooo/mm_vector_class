@@ -1,10 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
-/*8.	Exceptions / Templates. Kirolos Usama is trying to learn how stacks work by building one. He needs your help to develop a template stack class with methods: push, pop, top, size and empty. An object of our stack class has a fixed size given as a parameter to the constructor and it does not expand. Define also the big 3 methods for it. When used in a program, an object of the stack class will throw exceptions in the following situations:
-•	Throw a StackOverflowException if the application program tries to push data onto a stack that is already full
-•	Throw a StackEmptyException if the application program tries to pop data off an empty stack
-*/
-template <class T>//with big 3 and exceptions
+
+template <class T>
 class Stack
 {
 private:
