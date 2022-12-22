@@ -98,12 +98,12 @@ mmVector<object>::~mmVector(){
 }
 
 template<typename object>
-int mmVector<object>::size()const{
+const int& mmVector<object>::size()const{
     return itsSize;
 }
 
 template<class object>
-int mmVector<object>::capacity() const {
+const int& mmVector<object>::capacity() const {
     return itsCapacity;
 }
 
@@ -128,9 +128,13 @@ mmVector<object> &mmVector<object>::operator=( mmVector &&rhs) {
 
 template<typename object>
 void mmVector<object>::erase(iterator it){
-    if(itsSize == 0) return;
     // Checking Boundries
-    if(!isValidIterator(it)) throw out_of_range("");
+    if(!isValidIterator(it)){
+        throw out_of_range("this iterator is invalid!!");
+        exit(0);
+    }
+
+    if(itsSize == 0) return;
 
     // shifiting elements after the "it" to left
     for(auto i = it; i < end(); i++)
@@ -142,19 +146,18 @@ void mmVector<object>::erase(iterator it){
 
 template<class object>
 void mmVector<object>::erase(iterator it1, iterator it2) {
-    if(it1 > it2) throw("start iterator is bigger than end iterator");
+    if(it1 > it2) throw("1st iterator is bigger than 2nd iterator");
 
     if(!isValidIterator(it1) || !isValidIterator(it2))
-        throw out_of_range("One iterator is out of range");
-
+        throw out_of_range("this iterator is invalid!!");
 
     // shifiting elements after the "it2" to left
-    for(auto i = it1, j = it2 + 1; i < end(); i++, j++)
+    for(auto i = it1, j = it2 + 1; (i < end() && j < end()); i++, j++)
         *(i) = *(j);
 
     itsSize -= (it2 - it1 + 1);
 
-    // Setting deleted elements to deafult value after moving them to the end of ou vector
+//     Setting deleted elements to deafult value after moving them to the end of ou vector
     for(int i = itsSize + 1; i < (it2 - it1 + 1); i++ ){
         ptr[i] = object();
     }
@@ -196,7 +199,7 @@ ostream & operator<<(ostream &out, const mmVector<object>& rhs) {
         out << rhs.ptr[i];
         if(i != rhs.itsSize - 1) out << ", ";
     }
-    out << "]\n";
+    out << "]";
     return out;
 }
 
@@ -214,12 +217,12 @@ bool mmVector<object>::isValidIterator(iterator it) {
 
 template<class object>
 void mmVector<object>::insert(iterator it, const object& obj) {
-    if(!isValidIterator(it)) throw out_of_range("");
+    if(!isValidIterator(it)) throw out_of_range("this iterator is invalid!!");
 
-    int index = it - this->begin();
+    size_t index = it - this->begin();
 
     push_back(object());
-    for(auto i = itsSize ; i > index; i-- ) {
+    for(auto i = itsSize - 1 ; i > index; i-- ) {
         ptr[i]= ptr[i - 1];
     }
     ptr[index] = obj;

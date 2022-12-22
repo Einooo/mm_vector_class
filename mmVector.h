@@ -11,7 +11,9 @@ private:
     iterator ptr;
     int itsSize;
     int itsCapacity;
-    void increaseCapacity(int n);
+
+    // Helper Functions
+    void increaseCapacity(int n);           // increasing allocated memory in The Free Store
     bool isValidIterator(iterator);         // return true if iterator is in out boundries
 
 public:
@@ -32,7 +34,7 @@ public:
     void erase(iterator);                   // Remove item at iterator
     iterator begin() ;                      // Return an iterator (T*)
     iterator end();                         // Return an iterator (T*)
-    void erase(iterator, iterator);       // Remove items between
+    void erase(iterator, iterator);         // Remove items between
     void clear();                           // Delete all vector content
     void insert(iterator,  const object&);        // Insert item at iterator
 
@@ -41,10 +43,10 @@ public:
     bool operator< (const mmVector<object>&)    ;// Compares item by item
 
     // Capacity operations
-    int size() const ;          // Return current size of vec
-    int capacity() const;       // Return size of current allocated array
-    void resize(int) ;            // Relocate to sepcified size
-    bool empty() ;              // Return true if size is 0
+    const int& size() const ;              // Return current size of vec
+    const int& capacity() const;           // Return size of current allocated array
+    void resize(int) ;              // Relocate to sepcified size
+    bool empty() ;                  // Return true if size is 0
     void print() const;
 
     template<typename t>
