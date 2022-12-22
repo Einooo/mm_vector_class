@@ -1,0 +1,20 @@
+\hypertarget{mm_vector_8cpp}{}\doxysection{mm\+Vector.\+cpp File Reference}
+\label{mm_vector_8cpp}\index{mmVector.cpp@{mmVector.cpp}}
+{\ttfamily \#include \char`\"{}mm\+Vector.\+h\char`\"{}}\newline
+Include dependency graph for mm\+Vector.\+cpp\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class object $>$ }\\ostream \& \mbox{\hyperlink{mm_vector_8cpp_aea2a0c65432df9a44492551c56ca5cb7}{operator$<$$<$}} (ostream \&out, const \mbox{\hyperlink{classmm_vector}{mm\+Vector}}$<$ object $>$ \&rhs)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{mm_vector_8cpp_aea2a0c65432df9a44492551c56ca5cb7}\label{mm_vector_8cpp_aea2a0c65432df9a44492551c56ca5cb7}} 
+\index{mmVector.cpp@{mmVector.cpp}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!mmVector.cpp@{mmVector.cpp}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}}
+{\footnotesize\ttfamily template$<$class object $>$ \\
+ostream \& operator$<$$<$ (\begin{DoxyParamCaption}\item[{ostream \&}]{out,  }\item[{const \mbox{\hyperlink{classmm_vector}{mm\+Vector}}$<$ object $>$ \&}]{rhs }\end{DoxyParamCaption})}
+
