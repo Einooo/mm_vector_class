@@ -1,16 +1,17 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 
 #include "mmVector.h"
 #include "mmVector.cpp"
-using  namespace  std;
+
+using namespace std;
 void testClassWithString();
 void testClassWithInt();
 void testClassWithStlVector();
 int main() {
-//    testClassWithString();
+   testClassWithString();
 //    testClassWithInt();
-    testClassWithStlVector();
-
+    // testClassWithStlVector();
 }
 
 void testClassWithString() {
